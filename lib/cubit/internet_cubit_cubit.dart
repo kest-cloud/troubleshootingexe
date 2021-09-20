@@ -16,15 +16,13 @@ class InternetCubitCubit extends Cubit<InternetCubitState> {
         connectivity.onConnectivityChanged.listen((connectivityResult) {
       print("$connectivityResult");
 
-      // ignore: unrelated_type_equality_checks
       if (connectivityResult == ConnectionStatus.mobile) {
         emitInternetConnected(ConnectionStatus.mobile);
-        emit(InternetConnectedState(connectionStatus: ConnectionStatus.mobile));
-        // ignore: unrelated_type_equality_checks
+        // emit(InternetConnectedState(connectionStatus: ConnectionStatus.mobile));
 
       } else if (connectivityResult == ConnectionStatus.none) {
         emitInternetDisconnected(ConnectionStatus.none);
-        emit(InternetConnectedState(connectionStatus: ConnectionStatus.none));
+        // emit(InternetConnectedState(connectionStatus: ConnectionStatus.none));
       }
     });
   }
