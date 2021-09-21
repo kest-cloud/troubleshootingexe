@@ -15,11 +15,9 @@ class InternetCubitCubit extends Cubit<InternetCubitState> {
         .listen((ConnectivityResult connectivityResult) {
       try {
         if (connectivityResult == ConnectivityResult.mobile) {
-          // emitInternetConnected(ConnectionStatus.mobile);
           emit(InternetConnectedState(
               connectionStatus: ConnectionStatus.mobile));
         } else if (connectivityResult == ConnectivityResult.none) {
-          // emitInternetDisconnected(ConnectionStatus.none);
           emit(InternetDisconnectedState(
               connectionStatus: ConnectionStatus.none));
         }
@@ -28,12 +26,6 @@ class InternetCubitCubit extends Cubit<InternetCubitState> {
       }
     });
   }
-
-  // // void emitInternetConnected(ConnectionStatus _connectionStatus) =>
-  // //     emit(InternetConnectedState(connectionStatus: _connectionStatus));
-
-  // // void emitInternetDisconnected(ConnectionStatus _connectionStatus) =>
-  // //     emit(InternetDisconnectedState(connectionStatus: _connectionStatus));
 
   @override
   Future<void> close() {

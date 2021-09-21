@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/bluetooth_cubit.dart';
 import 'cubit/internet_cubit_cubit.dart';
 import 'cubit/locationcheck_cubit.dart';
+import 'cubit/server_cubit.dart';
 import 'homepage.dart';
 
 void main() {
@@ -12,6 +14,12 @@ void main() {
       ),
       BlocProvider(
         create: (context) => LocationcheckCubit(),
+      ),
+      // BlocProvider(
+      //   create: (context) => BluetoothCubit(),
+      // ),
+      BlocProvider(
+        create: (context) => ServerCubit(),
       ),
     ],
     child: const MyApp(),

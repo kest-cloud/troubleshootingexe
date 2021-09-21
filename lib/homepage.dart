@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/bluetooth_cubit.dart';
 import 'cubit/locationcheck_cubit.dart';
+import 'cubit/server_cubit.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -21,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    location.determinePosition();
+    //  location.determinePosition();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Troubleshooting"),
@@ -49,12 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: const <Widget>[
                           Icon(Icons.signal_cellular_4_bar,
                               color: Colors.green),
-                          Expanded(
-                            child: Text(
-                              'Internet Connection',
-                              style: TextStyle(
-                                fontSize: 17,
-                              ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Internet Connection',
+                            style: TextStyle(
+                              fontSize: 17,
                             ),
                           )
                         ],
@@ -70,12 +70,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: const <Widget>[
                           Icon(Icons.signal_cellular_0_bar, color: Colors.red),
-                          Expanded(
-                            child: Text(
-                              'No Internet Connection',
-                              style: TextStyle(
-                                fontSize: 17,
-                              ),
+                          SizedBox(width: 10),
+                          Text(
+                            'No Internet Connection',
+                            style: TextStyle(
+                              fontSize: 17,
                             ),
                           )
                         ],
@@ -95,10 +94,64 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (context, state) {
                   if (state is LocationAcceptState &&
                       state.locationStatus == LocationStatus.whileInUse) {
-                    return const Text("Location Permission Accepted");
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.thumb_up, color: Colors.green),
+                          SizedBox(width: 10),
+                          Text(
+                            "Location Permission Accepted",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+
+                    // Text("Location Permission Accepted");
                   } else if (state is LocationDeniedState &&
                       state.locationStatus == LocationStatus.denied) {
-                    return const Text("Permission Denied");
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.thumb_down, color: Colors.red),
+                          SizedBox(width: 10),
+                          Text(
+                            "Permission Denied",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+
+                    //Text("Permission Denied");
+                  } else if (state is LocationAcceptEverState &&
+                      state.locationStatus == LocationStatus.always) {
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.thumb_up, color: Colors.green),
+                          SizedBox(width: 10),
+                          Text(
+                            "Location Permission Accepted",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+
+                    // Text("Location Permission Accepted");
                   } else {
                     return const CircularProgressIndicator();
                   }
@@ -107,19 +160,68 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             BlocProvider(
-              create: (context) => BluetoothCubit(),
-              child: BlocBuilder<BluetoothCubit, BluetoothState>(
+              create: (context) => ServerCubit(),
+              child: BlocBuilder<ServerCubit, ServerState>(
                 builder: (context, state) {
-                  if (state is BluetoothConnectedState) {
-                    return const Text("Bluetooth Connected");
-                  } else if (state is LocationDeniedState) {
-                    return const Text("Bluetooth Disconnected");
+                  if (state is ServerConnectedState && true) {
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.thumb_up, color: Colors.green),
+                          SizedBox(width: 10),
+                          Text(
+                            "Server Connected!",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+
+                    //Text("Server Connection");
+                  } else if (state is ServerDisconnectedState) {
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.thumb_down, color: Colors.red),
+                          SizedBox(width: 10),
+                          Text(
+                            "Something Went wrong! Server Not Reachable!",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   } else {
                     return const CircularProgressIndicator();
                   }
                 },
               ),
-            )
+            ),
+
+            const SizedBox(height: 20),
+
+            // BlocProvider(
+            //   create: (context) => BluetoothCubit(),
+            //   child: BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
+            //     builder: (context, state) {
+            //       if (state is BluetoothConnectedState) {
+            //         return const Text("Bluetooth Connected");
+            //       } else if (state is LocationDeniedState) {
+            //         return const Text("Bluetooth Disconnected");
+            //       } else {
+            //         return const CircularProgressIndicator();
+            //       }
+            //     },
+            //   ),
+            // )
           ],
         ),
       ),

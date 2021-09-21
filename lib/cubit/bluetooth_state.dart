@@ -1,18 +1,18 @@
 part of 'bluetooth_cubit.dart';
 
-abstract class BluetoothState {}
+abstract class BluetoothDeviceState {}
 
-class BluetoothInitial extends BluetoothState {}
+class BluetoothInitial extends BluetoothDeviceState {}
 
-class BluetoothConnectedState extends BluetoothState {
+class BluetoothConnectedState extends BluetoothDeviceState {
   BluetoothConnectedState();
 }
 
-class BluetoothDisconnectedState extends BluetoothState {
+class BluetoothDisconnectedState extends BluetoothDeviceState {
   BluetoothDisconnectedState();
 }
 
-class ErrorState extends BluetoothState {
+class ErrorState extends BluetoothDeviceState {
   final Exception error;
   ErrorState(this.error);
 }

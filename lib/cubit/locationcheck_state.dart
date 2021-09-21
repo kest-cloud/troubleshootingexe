@@ -9,6 +9,11 @@ class LocationAcceptState extends LocationcheckState {
   LocationAcceptState({required this.locationStatus});
 }
 
+class LocationAcceptEverState extends LocationcheckState {
+  final LocationStatus locationStatus;
+  LocationAcceptEverState({required this.locationStatus});
+}
+
 class LocationDeniedState extends LocationcheckState {
   final LocationStatus locationStatus;
   LocationDeniedState({required this.locationStatus});

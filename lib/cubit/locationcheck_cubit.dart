@@ -5,33 +5,33 @@ import 'package:geolocator/geolocator.dart';
 part 'locationcheck_state.dart';
 
 class LocationcheckCubit extends Cubit<LocationcheckState> {
-  late bool serviceEnabled;
-  late LocationPermission permission;
+  late bool serviceEnabled = true;
 
-  LocationcheckCubit() : super(LocationcheckInitial());
+  //late LocationPermission permission;
 
-  Future<Position> determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    final LocationStatus locationStatus;
+  // ignore: empty_constructor_bodies
+  LocationcheckCubit() : super(LocationcheckInitial()) {
+    Future<Position> determinePosition() async {
+      LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    permission = await Geolocator.requestPermission();
-    print("$permission");
-    print("$permission");
-    if (permission == LocationPermission.whileInUse) {
-      emit(LocationAcceptState(locationStatus: LocationStatus.whileInUse));
-
-      if (permission == LocationPermission.denied) {
-        emit(LocationDeniedState(locationStatus: LocationStatus.denied));
+      //late LocationStatus locationStatus;
+      if (!serviceEnabled) {
+        permission = await Geolocator.requestPermission();
+        return Future.error('Location services are disabled.');
       }
+      permission = await Geolocator.checkPermission();
+
+      if (permission == LocationPermission.whileInUse) {
+        emit(LocationAcceptState(locationStatus: LocationStatus.whileInUse));
+      } else if (permission == LocationPermission.denied) {
+        emit(LocationDeniedState(locationStatus: LocationStatus.denied));
+      } else if (permission == LocationPermission.always) {
+        emit(LocationAcceptEverState(locationStatus: LocationStatus.always));
+      }
+
+      return await Geolocator.getCurrentPosition();
     }
 
-    return await Geolocator.getCurrentPosition();
+    determinePosition();
   }
 }
