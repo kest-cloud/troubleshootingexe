@@ -1,11 +1,14 @@
 part of 'internet_cubit_cubit.dart';
 
-@immutable
 abstract class InternetCubitState {}
 
-class InternetCubitInitial extends InternetCubitState {}
+class InternetCubitInitial extends InternetCubitState {
+  InternetCubitInitial();
+}
 
-class InternetLoadingState extends InternetCubitState {}
+class InternetLoadingState extends InternetCubitState {
+  InternetLoadingState();
+}
 
 class InternetConnectedState extends InternetCubitState {
   final ConnectionStatus connectionStatus;
@@ -15,4 +18,9 @@ class InternetConnectedState extends InternetCubitState {
 class InternetDisconnectedState extends InternetCubitState {
   final ConnectionStatus connectionStatus;
   InternetDisconnectedState({required this.connectionStatus});
+}
+
+class ErrorState extends InternetCubitState {
+  final Exception error;
+  ErrorState(this.error);
 }

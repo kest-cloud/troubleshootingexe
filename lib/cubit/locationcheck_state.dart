@@ -1,6 +1,5 @@
 part of 'locationcheck_cubit.dart';
 
-@immutable
 abstract class LocationcheckState {}
 
 class LocationcheckInitial extends LocationcheckState {}
@@ -11,5 +10,11 @@ class LocationAcceptState extends LocationcheckState {
 }
 
 class LocationDeniedState extends LocationcheckState {
-  LocationDeniedState();
+  final LocationStatus locationStatus;
+  LocationDeniedState({required this.locationStatus});
+}
+
+class ErrorState extends LocationcheckState {
+  final Exception error;
+  ErrorState(this.error);
 }

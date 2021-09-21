@@ -1,3 +1,3 @@
 enum ConnectionStatus { mobile, none }
 
-enum LocationStatus { accept, denied }
+enum LocationStatus { whileInUse, denied }
