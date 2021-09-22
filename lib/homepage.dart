@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Icon(Icons.thumb_up, color: Colors.green),
                           SizedBox(width: 10),
                           Text(
-                            "Location Permission Accepted",
+                            "Permission Granted",
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Icon(Icons.thumb_up, color: Colors.green),
                           SizedBox(width: 10),
                           Text(
-                            "Location Permission Accepted",
+                            "Permission Granted",
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -172,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Icon(Icons.thumb_up, color: Colors.green),
                           SizedBox(width: 10),
                           Text(
-                            "Server Connected!",
+                            "Server Connection!",
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -207,7 +207,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             const SizedBox(height: 20),
-
+//the bluetooth can be detected when put on already...
+//but I can not figure how
+//to effect the state change bacause its not returning anything,
+//except null value
             // BlocProvider(
             //   create: (context) => BluetoothCubit(),
             //   child: BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
