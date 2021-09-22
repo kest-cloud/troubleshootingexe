@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.green),
                           SizedBox(width: 10),
                           Text(
-                            'Internet Connection',
+                            'Mobile Data On',
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Icon(Icons.signal_cellular_0_bar, color: Colors.red),
                           SizedBox(width: 10),
                           Text(
-                            'No Internet Connection',
+                            'Please Turn On Mobile Data',
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -206,6 +206,57 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
+            const SizedBox(height: 20),
+
+            BlocProvider(
+              create: (context) => InternetCubitCubit(),
+              child: BlocBuilder<InternetCubitCubit, InternetCubitState>(
+                builder: (context, state) {
+                  if (state is InternetConnectedState &&
+                      state.connectionStatus == ConnectionStatus.mobile) {
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.access_time, color: Colors.green),
+                          SizedBox(width: 10),
+                          Text(
+                            'Data Connection Active',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+
+                    // Text("Internet connected");
+                  } else if (state is InternetDisconnectedState &&
+                      state.connectionStatus == ConnectionStatus.none) {
+                    return Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(Icons.cancel, color: Colors.red),
+                          SizedBox(width: 10),
+                          Text(
+                            'No Data Connection Detected',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                    // Text("Disconnected");
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              ),
+            ),
             const SizedBox(height: 20),
 //the bluetooth can be detected when put on already...
 //but I can not figure how yet
