@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             const SizedBox(height: 20),
 //the bluetooth can be detected when put on already...
-//but I can not figure how
+//but I can not figure how yet
 //to effect the state change bacause its not returning anything,
 //except null value
             // BlocProvider(
