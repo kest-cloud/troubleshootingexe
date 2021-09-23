@@ -242,41 +242,41 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
 
-            // BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
-            //   builder: (context, state) {
-            //     if (state is BluetoothConnectedState) {
-            //       return Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: const <Widget>[
-            //           Icon(Icons.cancel, color: Colors.red),
-            //           SizedBox(width: 10),
-            //           Text(
-            //             'Bluetooth Connected',
-            //             style: TextStyle(
-            //               fontSize: 17,
-            //             ),
-            //           )
-            //         ],
-            //       );
-            //     } else {
-            //       return Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: const <Widget>[
-            //           Icon(Icons.cancel, color: Colors.red),
-            //           SizedBox(width: 10),
-            //           Text(
-            //             'Bluetooth Deactivated',
-            //             style: TextStyle(
-            //               fontSize: 17,
-            //             ),
-            //           )
-            //         ],
-            //       );
-            //     }
-            //   },
-            // )
+            BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
+              builder: (context, state) {
+                if (state is BluetoothConnectedState) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const <Widget>[
+                      Icon(Icons.cancel, color: Colors.red),
+                      SizedBox(width: 10),
+                      Text(
+                        'Bluetooth Connected',
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      )
+                    ],
+                  );
+                } else {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const <Widget>[
+                      Icon(Icons.cancel, color: Colors.red),
+                      SizedBox(width: 10),
+                      Text(
+                        'Bluetooth Deactivated',
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      )
+                    ],
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
