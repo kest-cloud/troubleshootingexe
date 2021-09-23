@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const <Widget>[
-                        Icon(Icons.thumb_up, color: Colors.green),
+                        Icon(Icons.check_circle, color: Colors.green),
                         SizedBox(width: 10),
                         Text(
                           "Server Connection!",
@@ -241,10 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             const SizedBox(height: 20),
-//the bluetooth can be detected when put on already...
-//but I can not figure how yet
-//to effect the state change bacause its not returning anything,
-//except null value
+
             BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
               builder: (context, state) {
                 if (state is BluetoothConnectedState) {
