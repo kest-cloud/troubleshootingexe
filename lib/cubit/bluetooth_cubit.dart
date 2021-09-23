@@ -14,9 +14,9 @@ class BluetoothCubit extends Cubit<BluetoothDeviceState> {
       FlutterBlue flutterBlue = FlutterBlue.instance;
 
       flutterBlue.isOn.asStream().listen((event) {
-        print(event);
-        if (event == true) {
-          emit(BluetoothConnectedState());
+        if (event) {
+          emit(BluetoothConnectedState(
+              bluetoothCheckState: BluetoothCheckState.active));
         } else {
           emit(BluetoothDisconnectedState());
         }

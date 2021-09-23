@@ -5,7 +5,8 @@ abstract class BluetoothDeviceState {}
 class BluetoothInitial extends BluetoothDeviceState {}
 
 class BluetoothConnectedState extends BluetoothDeviceState {
-  BluetoothConnectedState();
+  final BluetoothCheckState bluetoothCheckState;
+  BluetoothConnectedState({required this.bluetoothCheckState});
 }
 
 class BluetoothDisconnectedState extends BluetoothDeviceState {
