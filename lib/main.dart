@@ -15,9 +15,9 @@ void main() {
       BlocProvider(
         create: (context) => LocationcheckCubit(),
       ),
-      // BlocProvider(
-      //   create: (context) => BluetoothCubit(),
-      // ),
+      BlocProvider(
+        create: (context) => BluetoothCubit(),
+      ),
       BlocProvider(
         create: (context) => ServerCubit(),
       ),
