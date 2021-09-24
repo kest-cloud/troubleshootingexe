@@ -10,7 +10,9 @@ class InternetCubitCubit extends Cubit<InternetCubitState> {
   late StreamSubscription connectivityStreamSubcription;
   late ConnectivityResult connectivityResult;
 
-  InternetCubitCubit() : super(InternetCubitInitial()) {
+  InternetCubitCubit()
+      : super(InternetDisconnectedState(
+            connectionStatus: ConnectionStatus.none)) {
     connectivityStreamSubcription = connectivity.onConnectivityChanged
         .listen((ConnectivityResult connectivityResult) {
       try {

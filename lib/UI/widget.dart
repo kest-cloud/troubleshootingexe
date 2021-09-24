@@ -1,32 +1,29 @@
-// import 'package:apptroubleshoot/cubit/bluetooth_cubit.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
-// class BlocBuilderr extends StatefulWidget {
-//   IconData icon;
-//   String label;
+class RowwClass extends StatelessWidget {
+  const RowwClass({Key? key, required this.label, required this.opacity})
+      : super(key: key);
 
-//   BlocBuilderr({
-//     Key? key,
-//     required this.label,
-//     required this.icon,
-//   }) : super(key: key);
+  final String label;
+  final double opacity;
 
-//   @override
-//   _BlocBuilderrState createState() => _BlocBuilderrState();
-// }
-
-// class _BlocBuilderrState extends State<BlocBuilderr> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: const <Widget>[
-//         Icon(Icons.check_circle, color: Colors.green),
-//         SizedBox(width: 10),
-//         Text("label"),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: opacity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.check_circle, color: Colors.green),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 17),
+          ),
+        ],
+      ),
+    );
+  }
+}

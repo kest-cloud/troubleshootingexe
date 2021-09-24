@@ -1,3 +1,4 @@
+import 'package:apptroubleshoot/UI/widget.dart';
 import 'package:apptroubleshoot/constants/enums.dart';
 import 'package:apptroubleshoot/cubit/bluetooth%20cubit/bluetooth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -38,43 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, state) {
                 if (state is InternetConnectedState &&
                     state.connectionStatus == ConnectionStatus.mobile) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 10),
-                        Text(
-                          'Mobile Data On',
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
+                  return const RowwClass(label: "Mobile Data On", opacity: 1);
 
                   // Text("Internet connected");
                 } else if (state is InternetDisconnectedState &&
                     state.connectionStatus == ConnectionStatus.none) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.cancel, color: Colors.red),
-                        SizedBox(width: 10),
-                        Text(
-                          'Please Turn On Mobile Data',
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                  // Text("Disconnected");
+                  return const RowwClass(
+                      label: "Please Turn On Mobile Data!", opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
@@ -83,66 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             BlocBuilder<LocationcheckCubit, LocationcheckState>(
               builder: (context, state) {
-                if (state is LocationAcceptState &&
+                if (state is LocationAcceptEverState &&
+                    state.locationStatus == LocationStatus.always) {
+                  return const RowwClass(
+                      label: "Permission Granted!", opacity: 1);
+
+                  // Text("Location Permission Accepted");
+                } else if (state is LocationAcceptState &&
                     state.locationStatus == LocationStatus.whileInUse) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 10),
-                        Text(
-                          "Permission Granted",
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
+                  return const RowwClass(
+                      label: "Permission Granted!", opacity: 1);
 
                   // Text("Location Permission Accepted");
                 } else if (state is LocationDeniedState &&
                     state.locationStatus == LocationStatus.denied) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.cancel, color: Colors.red),
-                        SizedBox(width: 10),
-                        Text(
-                          "Permission Denied",
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-
-                  //Text("Permission Denied");
-                } else if (state is LocationAcceptEverState &&
-                    state.locationStatus == LocationStatus.always) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 10),
-                        Text(
-                          "Permission Granted",
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-
-                  // Text("Location Permission Accepted");
+                  return const RowwClass(
+                      label: "Permission Denied", opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
@@ -152,132 +79,44 @@ class _MyHomePageState extends State<MyHomePage> {
             BlocBuilder<ServerCubit, ServerState>(
               builder: (context, state) {
                 if (state is ServerConnectedState && true) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 10),
-                        Text(
-                          "Server Connection!",
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-
-                  //Text("Server Connection");
+                  return const RowwClass(
+                      label: "Server Connection!", opacity: 1);
                 } else if (state is ServerDisconnectedState) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.cancel, color: Colors.red),
-                        SizedBox(width: 10),
-                        Text(
-                          "Something Went wrong! Server Not Reachable!",
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
+                  return const RowwClass(
+                      label: "Something Went wrong! Server Not Reachable!",
+                      opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
               },
             ),
-
             const SizedBox(height: 20),
-
             BlocBuilder<InternetCubitCubit, InternetCubitState>(
               builder: (context, state) {
                 if (state is InternetConnectedState &&
                     state.connectionStatus == ConnectionStatus.mobile) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 10),
-                        Text(
-                          'Data Connection Active',
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-
-                  // Text("Internet connected");
+                  return const RowwClass(
+                      label: "Data Connection Active", opacity: 1);
                 } else if (state is InternetDisconnectedState &&
                     state.connectionStatus == ConnectionStatus.none) {
-                  return Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.cancel, color: Colors.red),
-                        SizedBox(width: 10),
-                        Text(
-                          'No Data Connection Detected',
-                          style: TextStyle(
-                            fontSize: 17,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                  // Text("Disconnected");
+                  return const RowwClass(
+                      label: "No Data Connection Detected", opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
               },
             ),
             const SizedBox(height: 20),
-
             BlocBuilder<BluetoothCubit, BluetoothDevState>(
-              builder: (context, state) {
-                if (state is BluetoothConnectedState) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const <Widget>[
-                      Icon(Icons.check_circle, color: Colors.green),
-                      SizedBox(width: 10),
-                      Text(
-                        'Bluetooth Connected',
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      )
-                    ],
-                  );
-                } else {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const <Widget>[
-                      Icon(Icons.cancel, color: Colors.red),
-                      SizedBox(width: 10),
-                      Text(
-                        'Bluetooth Deactivated',
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      )
-                    ],
-                  );
-                }
-              },
-            )
+                builder: (context, state) {
+              if (state is BluetoothConnectedState) {
+                return const RowwClass(
+                    label: 'Bluetooth Connected', opacity: 1);
+              } else {
+                return const RowwClass(
+                    label: 'Bluetooth Disconnected', opacity: 0.3);
+              }
+            }),
           ],
         ),
       ),
