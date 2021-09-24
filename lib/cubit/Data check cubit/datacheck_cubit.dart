@@ -14,7 +14,7 @@ class DatacheckCubit extends Cubit<DatacheckState> {
           emit(DataAccessState(dataCheck: DataCheck.active));
         } else {
           emit(NoDataAccessState(dataCheck: DataCheck.notactive));
-          print('No internet :( Reason:');
+
           //print(DataConnectionChecker().lastTryResults);
         }
       } on Exception catch (e) {

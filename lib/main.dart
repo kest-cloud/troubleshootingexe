@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/bluetooth_cubit.dart';
-import 'cubit/internet_cubit_cubit.dart';
-import 'cubit/locationcheck_cubit.dart';
-import 'cubit/server_cubit.dart';
-import 'homepage.dart';
+import 'cubit/LocationPermission cubit/locationcheck_cubit.dart';
+import 'cubit/MobileDataCheck cubit/internet_cubit_cubit.dart';
+import 'cubit/Server cubit/server_cubit.dart';
+
+import 'UI/homepage.dart';
+import 'cubit/bluetooth cubit/bluetooth_cubit.dart';
 
 void main() {
   runApp(MultiBlocProvider(

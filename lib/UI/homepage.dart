@@ -1,10 +1,11 @@
 import 'package:apptroubleshoot/constants/enums.dart';
-import 'package:apptroubleshoot/cubit/internet_cubit_cubit.dart';
+import 'package:apptroubleshoot/cubit/bluetooth%20cubit/bluetooth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/bluetooth_cubit.dart';
-import 'cubit/locationcheck_cubit.dart';
-import 'cubit/server_cubit.dart';
+import 'package:flutter_blue/flutter_blue.dart';
+import '../cubit/LocationPermission cubit/locationcheck_cubit.dart';
+import '../cubit/MobileDataCheck cubit/internet_cubit_cubit.dart';
+import '../cubit/Server cubit/server_cubit.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -242,14 +243,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
 
-            BlocBuilder<BluetoothCubit, BluetoothDeviceState>(
+            BlocBuilder<BluetoothCubit, BluetoothDevState>(
               builder: (context, state) {
                 if (state is BluetoothConnectedState) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: const <Widget>[
-                      Icon(Icons.cancel, color: Colors.red),
+                      Icon(Icons.check_circle, color: Colors.green),
                       SizedBox(width: 10),
                       Text(
                         'Bluetooth Connected',
