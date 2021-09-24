@@ -1,9 +1,9 @@
 import 'package:apptroubleshoot/UI/widget.dart';
 import 'package:apptroubleshoot/constants/enums.dart';
+import 'package:apptroubleshoot/cubit/Data_Availability/datacheck_cubit.dart';
 import 'package:apptroubleshoot/cubit/bluetooth%20cubit/bluetooth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import '../cubit/LocationPermission cubit/locationcheck_cubit.dart';
 import '../cubit/MobileDataCheck cubit/internet_cubit_cubit.dart';
 import '../cubit/Server cubit/server_cubit.dart';
@@ -91,14 +91,14 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             const SizedBox(height: 20),
-            BlocBuilder<InternetCubitCubit, InternetCubitState>(
+            BlocBuilder<DatacheckCubit, DatacheckState>(
               builder: (context, state) {
-                if (state is InternetConnectedState &&
-                    state.connectionStatus == ConnectionStatus.mobile) {
+                if (state is DataAccessState &&
+                    state.dataCheck == DataCheck.active) {
                   return const RowwClass(
                       label: "Data Connection Active", opacity: 1);
-                } else if (state is InternetDisconnectedState &&
-                    state.connectionStatus == ConnectionStatus.none) {
+                } else if (state is NoDataAccessState &&
+                    state.dataCheck == DataCheck.notactive) {
                   return const RowwClass(
                       label: "No Data Connection Detected", opacity: 0.3);
                 } else {

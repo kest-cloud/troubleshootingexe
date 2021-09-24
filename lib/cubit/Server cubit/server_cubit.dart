@@ -7,7 +7,9 @@ import 'package:meta/meta.dart';
 part 'server_state.dart';
 
 class ServerCubit extends Cubit<ServerState> {
-  ServerCubit() : super(ServerInitial()) {
+  ServerCubit()
+      : super(
+            ServerDisconnectedState(serverStatus: ServerStatus.disconnected)) {
     connect() async {
       try {
         final result =

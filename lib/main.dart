@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/Data_Availability/datacheck_cubit.dart';
 import 'cubit/LocationPermission cubit/locationcheck_cubit.dart';
 import 'cubit/MobileDataCheck cubit/internet_cubit_cubit.dart';
 import 'cubit/Server cubit/server_cubit.dart';
@@ -21,6 +22,9 @@ void main() {
       ),
       BlocProvider(
         create: (context) => ServerCubit(),
+      ),
+      BlocProvider(
+        create: (context) => DatacheckCubit(),
       ),
     ],
     child: const MyApp(),
