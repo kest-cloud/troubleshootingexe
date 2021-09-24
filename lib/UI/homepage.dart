@@ -39,13 +39,18 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, state) {
                 if (state is InternetConnectedState &&
                     state.connectionStatus == ConnectionStatus.mobile) {
-                  return const RowwClass(label: "Mobile Data On", opacity: 1);
+                  return const RowwClass(
+                      icon: Icon(Icons.check_circle, color: Colors.green),
+                      label: "Mobile Data On",
+                      opacity: 1);
 
                   // Text("Internet connected");
                 } else if (state is InternetDisconnectedState &&
                     state.connectionStatus == ConnectionStatus.none) {
                   return const RowwClass(
-                      label: "Please Turn On Mobile Data!", opacity: 0.3);
+                      icon: Icon(Icons.cancel, color: Colors.red),
+                      label: "Please Turn On Mobile Data!",
+                      opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
@@ -57,19 +62,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 if (state is LocationAcceptEverState &&
                     state.locationStatus == LocationStatus.always) {
                   return const RowwClass(
-                      label: "Permission Granted!", opacity: 1);
+                      icon: Icon(Icons.check_circle, color: Colors.green),
+                      label: "Permission Granted!",
+                      opacity: 1);
 
                   // Text("Location Permission Accepted");
                 } else if (state is LocationAcceptState &&
                     state.locationStatus == LocationStatus.whileInUse) {
                   return const RowwClass(
-                      label: "Permission Granted!", opacity: 1);
+                      icon: Icon(Icons.check_circle, color: Colors.green),
+                      label: "Permission Granted!",
+                      opacity: 1);
 
                   // Text("Location Permission Accepted");
                 } else if (state is LocationDeniedState &&
                     state.locationStatus == LocationStatus.denied) {
                   return const RowwClass(
-                      label: "Permission Denied", opacity: 0.3);
+                      icon: Icon(Icons.cancel, color: Colors.red),
+                      label: "Permission Denied",
+                      opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
@@ -80,9 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, state) {
                 if (state is ServerConnectedState && true) {
                   return const RowwClass(
-                      label: "Server Connection!", opacity: 1);
+                      icon: Icon(Icons.check_circle, color: Colors.green),
+                      label: "Server Connection!",
+                      opacity: 1);
                 } else if (state is ServerDisconnectedState) {
                   return const RowwClass(
+                      icon: Icon(Icons.cancel, color: Colors.red),
                       label: "Something Went wrong! Server Not Reachable!",
                       opacity: 0.3);
                 } else {
@@ -96,11 +110,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 if (state is DataAccessState &&
                     state.dataCheck == DataCheck.active) {
                   return const RowwClass(
-                      label: "Data Connection Active", opacity: 1);
+                      icon: Icon(Icons.check_circle, color: Colors.green),
+                      label: "Data Connection Active",
+                      opacity: 1);
                 } else if (state is NoDataAccessState &&
                     state.dataCheck == DataCheck.notactive) {
                   return const RowwClass(
-                      label: "No Data Connection Detected", opacity: 0.3);
+                      icon: Icon(Icons.cancel, color: Colors.red),
+                      label: "No Data Connection Detected",
+                      opacity: 0.3);
                 } else {
                   return const CircularProgressIndicator();
                 }
@@ -111,10 +129,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (context, state) {
               if (state is BluetoothConnectedState) {
                 return const RowwClass(
-                    label: 'Bluetooth Connected', opacity: 1);
+                    icon: Icon(Icons.check_circle, color: Colors.green),
+                    label: 'Bluetooth Connected',
+                    opacity: 1);
               } else {
                 return const RowwClass(
-                    label: 'Bluetooth Disconnected', opacity: 0.3);
+                    icon: Icon(Icons.cancel, color: Colors.red),
+                    label: 'Bluetooth Disconnected',
+                    opacity: 0.3);
               }
             }),
           ],

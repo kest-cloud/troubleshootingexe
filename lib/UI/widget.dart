@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class RowwClass extends StatelessWidget {
-  const RowwClass({Key? key, required this.label, required this.opacity})
+  const RowwClass(
+      {Key? key,
+      required this.label,
+      required this.opacity,
+      required this.icon})
       : super(key: key);
 
   final String label;
   final double opacity;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class RowwClass extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.check_circle, color: Colors.green),
+          icon,
           const SizedBox(
             width: 12,
           ),
